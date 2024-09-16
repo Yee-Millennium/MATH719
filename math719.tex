@@ -1,0 +1,280 @@
+\documentclass[11pt]{article}
+
+\usepackage{preamble}
+\input{math_commands.tex}
+
+\title{Notes of Math 719: Partial Differential Equation\\Instructor: Dallas Albritton}
+\author{YI WEI}
+\date{Sep 2024}
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Laplace's equation}
+\DATE{Sep 4, 2024}
+
+Elliptic PDEs:
+\begin{example}
+    Laplacian:
+    \begin{align*}
+        \Delta = \frac{\partial^2}{\partial x_1^2} + \dots +  \frac{\partial }{\partial x_n^2}\\
+               = div \nabla
+    \end{align*}
+\end{example}
+
+\begin{example}
+    n = 3: Newtonian gravity \\
+    \begin{align*}
+        \text{magnitutde} &= \frac{\kappa m m_1}{\| a - a_1 \| } \quad \text{(inverse square)} \\
+        m\ddot{a} &= \frac{\kappa m m_1}{\| a - a_1 \| }  \frac{a_1 - a}{\| a_1 - a \| } \\
+            &= - m\nabla u(a)\\
+        \text{where} \quad u(x) &= \frac{-k m_1}{\| x - a_1 \| }
+    \end{align*}
+\end{example}
+
+N masses $m_1, \ldots , m_{N} \ge 0$ , location $a_1, \ldots , a_{N} \in \R^3$
+
+
+$$
+u(x) = -\kappa \sum_{k=1}^{N} \frac{m_k}{\| x - a_k \| }
+$$
+
+
+\begin{example}
+    continuous distribution of mass
+    \begin{align*}
+        \varrho(x) \ge 0 \\
+        u(x) = -\kappa \int_{\R^3} \frac{\varrho(y)}{\| x-y \| } \, dy
+    \end{align*}
+    suppose supp $\varrho \subseteq \omega$ bdd open set
+\end{example}
+
+\remark $supp \varrho := \overline{\{ x \in \R^3: S(x) \neq  0 \}} $
+
+Laplace 
+\begin{align*}
+    \Delta u(x) = 0 \, for x \in \R^3  \bar{\omega}
+\end{align*}
+
+
+\begin{align*}
+    \Delta_x u(x) = -\kappa \int_{\omega} \varrho(y) \Delta_x \frac{1}{\| x-y \| } \, dy
+\end{align*}
+
+\begin{align*}
+    \Delta \frac{1}{\| x \| } = div \nabla \frac{1}{\| x \| }\\
+                             = div(-\frac{x}{\| x \|^3 })\\
+                             = \big(  -\frac{3}{\| x \|^3 } + 3x \frac{x^2}{\| x \|^5 }  \big)
+\end{align*}
+
+\begin{example}
+    \begin{align*}
+        \varrho = \text{const on } B_\R \\
+            = \frac{m}{4 \pi \R^3} \\
+        \text{and} u = -\kappa m \int_{B_\R} \frac{1}{\| x-y \| } \, dy
+    \end{align*}
+    \begin{claim}
+        \begin{align*}
+            u(x) = u(Ox) \, \text{where} O \in SO(3) \\
+            u(Ox) = - \kappa m \int_{B_\R} \frac{1}{\| Ox - Oz \| } \, dz\\
+                    = - \kappa m \int_{B_\R} \frac{1}{\| x - z \| } \, dz
+        \end{align*}
+    \end{claim}
+    \begin{align*}
+        u(x) = u(r) \\
+        u: \R^3 \to \R \\
+        u(x) = f(r)
+    \end{align*}
+\end{example}
+
+
+
+\yee{TODO: Complete notes between Sep 4 and Sep 13}
+\vspace{10mm}
+
+
+\DATE{Sep 13, 2024}
+
+Last time: Interior estimate
+
+Suppose $R > 0$ and $u \in C^{2}(B_{2R})$ is harmonic, then
+\begin{equation}
+    \label{eq:1}
+    \| \nabla^{k}u(x)  \| \le C_{k} \frac{1}{R^{k+3}} \int_{B_{2R}\setminus B_{R}}
+    \| u \| \, dy \quad \forall  x \in B_{R}
+\end{equation}
+
+Question: Why estimate of this form?
+
+Symmetries of $\Delta u = 0$. 
+
+\begin{enumerate}
+    \item homeoneity/scaler mult
+    \begin{align*}
+        u \mapsto \mu \quad (m \in \mathbb{R})
+    \end{align*}
+    \item scaling symmetry
+    \begin{align*}
+        u_{\lambda (x)} := u(\lambda x)\\
+        u \mapsto u_{\lambda} \; (u(\lambda\cdot ))
+    \end{align*}
+    Here $\Delta u_{\lambda} = \Delta[u(\lambda x)] = \lambda^2 \Delta u (\lambda u)=0$
+    \item translation:
+    \begin{align*}
+        u \mapsto u(\cdot -x_{0}) \quad (x_{0} \in \mathbb{R}^3)
+    \end{align*}
+    \item rotation and reflection
+    \begin{align*}
+        u \mapsto u(\mathcal{O}^{-1}) \quad (\mathcal{O} \in O(n))
+    \end{align*}
+\end{enumerate}
+
+\begin{enumerate}
+    \item $k=0, R=1$, What if
+    \begin{align*}
+        \|m u \| (x) \le C \int_{B_2 \setminus B_1} \| m u \| ^2 \, dy \quad 
+        \text{in} \; B_1\\
+        \Longrightarrow \| u(x) \| \le Cm \int_{B_2 \setminus B_1} \| u \| ^2 \, dy\\
+        \Longrightarrow u = 0
+    \end{align*}
+    Then this is nonsense. We need the power in the integral to be 1, i.e., 
+    \begin{align*}
+        \|m u \| (x) \le C \int_{B_2 \setminus B_1} \| m u \|  \, dy \quad 
+        \text{in} \; B_1
+    \end{align*}
+\end{enumerate}
+To prove~\eqref{eq:1}, it suffices to prove it for
+\begin{align*}
+    \int _{B_{2R}\setminus B_{R}} \| u \| = 1
+\end{align*}
+Suppose~\eqref{eq:1} holds for all harmonic function $u$ s.t.
+\begin{align*}
+    \int _{B_{2R}\setminus B_{R}} \| u \| = 1
+\end{align*}
+
+Given arbitrary harmonic function $v$, we define
+\begin{align*}
+    u := \frac{v}{\int _{B_{2R}\setminus B_{R}}\| v \|  \, dy}
+\end{align*}
+Then $u$ is still harmonic
+\begin{align*}
+    \Longrightarrow \frac{\| v \| }{\int_{B_{2R}\setminus B_{R}} \| v \| \, dy}
+    = \| u \|  \le C \frac{1}{R^{3}}
+\end{align*}
+To prove~\eqref{eq:1}, it suffices to prove it for $R=1$
+
+Given harmonic function $v$ on $B_{2R}$
+\begin{align*}
+    u(x) := v(Rx)
+\end{align*}
+Here $u(x)$ is a harmonic function on $B_2$.
+
+Then
+\begin{align*}
+    \| \nabla^{k} u(x) \|  &\le C \int_{B_2\setminus B_1} u(y) \, dy\\
+    &=\int_{B_2 \setminus B_1} \| v(Ry) \| \, dy\\
+    (\text{Change of Variable: } z=Ry) \\
+    &= \frac{C}{R^{3}} \int_{B_{2R}\setminus B_{R}}\int \| v(z) \| \, dz
+\end{align*}
+where $\| \nabla^{k}(v(Rx)) \| := R^{k}\| (\nabla^k v)(Rx) \| = R^{k}\| 
+(\nabla^{k}v)(q) \| $ where $q=Rx \in B_{R}$
+
+To prove~\eqref{eq:1}, it's enough to do it for $R=1$ and 
+$\int_{B_2 \setminus B_1} \| u \|\, dy = 1 $
+
+\subsection{}
+Given 
+\begin{align}
+    \label{eq:2}
+    \phi u = 2 \Delta * (\Delta \phi u) + G * (\Delta \phi u)
+\end{align}
+where $u \in C^{2}$ and $\Delta u = 0$ and $\phi \in C_{0}^{\infty}$
+
+$\underline{\text{One option}}$ $u \in L_{loc}^{1}$ ($u \in L^{1}(K)$) where K is compact
+, it's called locally integrable, is harmonic if~\eqref{eq:2} holds $\forall  \phi \in C_{0}^{\infty}$
+
+$\underline{\text{Another option}}$ $u \in L_{loc}^{1}$ is harmonic if
+\begin{align*}
+    \nabla (u * \phi_{\epsilon}) = 0 \qquad \text{for all } \epsilon
+\end{align*}
+
+\begin{example}
+    \item $\frac{1}{|x|}$ is $L_{loc}^{1}(\mathbb{R}^3)$
+    \item $(1+|x|)^{-3-\epsilon} \in L^{1}(\mathbb{R}^{3})$
+\end{example}
+
+\vspace{7mm}
+\begin{definition}
+    $\Omega \subseteq  R^{3}$ open, $u \in L_{loc}^{1}(\Omega)$ is weakly harmonic
+    if 
+    \begin{align*}
+        \int u \nabla \phi \, dy = 0 \quad \forall \phi \in C_{0}^{\infty}(\Omega)
+    \end{align*}
+\end{definition}
+\begin{remark}
+    \begin{align*}
+        \int \Delta u \cdot \phi = \int (div \nabla u) \phi\\
+        = - \int \nabla u \nabla \phi = \int u \nabla \phi
+    \end{align*}
+    This is integration by parts.
+\end{remark}
+
+If you need a generalization, you need to make it easy to check and easy
+to work with.
+
+\begin{lemma}[Weyl's lemma]
+    \, 
+
+    If $u$ is weakly harmonic in $\Omega$, then $u$ is smooth and
+    $\Delta u = 0$ in $\Omega$
+\end{lemma}
+
+\vspace{7mm}
+To prove this, we need 
+\begin{enumerate}
+    \item If $u$ is $C^{2}$ and $\Delta u = 0$, then $u$ is weakly harmonic
+    \item If $u$ is $C^{2}$ and weakly harmonic, them $\Delta u =0$
+\end{enumerate}
+
+\begin{proof}[Proof of 2. above]
+    Suppose not.
+
+    \begin{align*}
+        \int u \Delta \phi = 0 \quad \forall \phi
+    \end{align*}
+    But $\exists x_{0} $ s.t. $\Delta u(x_{0}) \neq 0$
+    \begin{align*}
+        \int \Delta u \phi = 0 \quad \phi
+    \end{align*}
+
+    Choose $\phi$ s.t.
+    \begin{align*}
+        \int \Delta u \phi \neq 0
+    \end{align*}
+    Countradiction.
+\end{proof}
+
+\begin{proof}[proof of Wely's lemma]
+    \,
+
+    (3) $u \in L_{loc}^{1}$ is weakly harmonic, then $\phi_{\epsilon}*u$ is 
+    also weakly harmonic.
+    \begin{align*}
+        \Longrightarrow \phi_{\epsilon} * u \text{ is strongly harmonic}
+    \end{align*}
+    We need to check
+    \begin{align*}
+        \int (u * \phi_{\epsilon}) \Delta \psi \, dy = 0 \quad \forall \psi
+    \end{align*}
+\end{proof}
+
+
+
+
+
+
+
+\end{document}
