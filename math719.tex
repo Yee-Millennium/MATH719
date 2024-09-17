@@ -233,13 +233,15 @@ to work with.
 \end{lemma}
 
 \vspace{7mm}
-To prove this, we need 
-\begin{enumerate}
-    \item If $u$ is $C^{2}$ and $\Delta u = 0$, then $u$ is weakly harmonic
-    \item If $u$ is $C^{2}$ and weakly harmonic, them $\Delta u =0$
-\end{enumerate}
+To prove this, we need the following claim:
+\begin{claim}
+    \begin{enumerate}
+        \item If $u$ is $C^{2}$ and $\Delta u = 0$, then $u$ is weakly harmonic
+        \item If $u$ is $C^{2}$ and weakly harmonic, them $\Delta u =0$
+    \end{enumerate}    
+\end{claim}
 
-\begin{proof}[Proof of 2. above]
+\begin{proof}[Proof of Claim 1.3.]
     Suppose not.
 
     \begin{align*}
@@ -269,12 +271,107 @@ To prove this, we need
     \begin{align*}
         \int (u * \phi_{\epsilon}) \Delta \psi \, dy = 0 \quad \forall \psi
     \end{align*}
+        \DATE{Sep 16, 2024}
+    \begin{remark}
+        $\Delta(f * \phi_{\epsilon}) = \Delta f * \phi_{\epsilon} \Longrightarrow \text{ Mollify harmonic function
+        , get a harmonic function.}$
+    \end{remark}
+
+    Enough to work with balls. Enough to work in $B_{3}$ and prove smoothness in $B_{1}$.
+
+    Because of translation and scalling symmetry.
+
+    $u \in L^{1}(B_{3})$ weakly harmonic. We define
+    \begin{align*}
+        u_{\epsilon}(x) = u * \phi_{\epsilon}(x) \quad \text{for } x \in B_{2} \text{ and } 0 < \epsilon \le \frac{1}{2}
+    \end{align*}
+    Want to $\underline{\text{check}} \; u_{\epsilon}$ is weakly harmonic in $B_{2}$.
+
+    \begin{align*}
+        \forall \psi \in C_{0}^{\infty}(B_{2}): \; \int _{B_{2}} u_{\epsilon}(x)\Delta \psi(x) \, dx 
+        = \int_{B_2}\int _{\mathbb{R}^3} \phi_{\epsilon}(x-y) u(y) \Delta \psi(x)\,dy\,dx\\
+        = \int u(y)(\phi_{\epsilon}(-\cdot )*\Delta \psi)(y)\,dy\\
+        = \int_{\mathbb{R}^{2}} u(y)\Delta(\phi_{\epsilon}(-\cdot )\psi)(y)\,dy\\
+        = 0 \;(\text{by definition of weakly harmonic})
+    \end{align*}
 \end{proof}
 
+Use interior estimates on $u_{\epsilon}$
+\begin{align*}
+    |\nabla^{k} u_{\epsilon}| \le C_{k}\int_{B_2\setminus B_1} \int |u_{\epsilon}|\,dy
+    \le C_k\int _{B_3}|u|\,dy
+\end{align*}
+
+Use Arzela-Ascoli: For all $k$, $\nabla^{k}u_{\epsilon} \longrightarrow \nabla^{k}u$ uniformly in $B_1$
+
+Weak version of $\Delta u = f$?
+\begin{definition}
+    $\Omega \subseteq \mathbb{R}^{3}$ open, $u,f \in L^{1}_{loc}(\Omega)$. Then we say that
+    \begin{align*}
+        \Delta u = f \quad \text{weakly harmonic in } \Omega
+    \end{align*}
+    if 
+    \begin{align*}
+        \int u \Delta \psi = \int f \psi \quad \forall \psi \in C_{0}^{\infty}(\Omega)
+    \end{align*}
+\end{definition}
+
+Previously: $f \in C^{2}$ and compactly supported
+\begin{align*}
+    \Delta(G*f) = f
+\end{align*}
+General $f$ holds?
+
+\begin{example}
+    $G*f$ makes sense for $f \in L^{1}$
+
+    \begin{align*}
+        -\frac{1}{4\pi} \int \frac{f(y)}{|x-y|}\, dy
+    \end{align*}
+    Notice that $\frac{1}{|x|}$ is not integrable.
+\end{example}
+
+Now let $-\frac{1}{4\pi|x|}$ = G. And $G_1 = G\1_{B_1} \in L^{1} \bigcap L^{3-}$, 
+$G_2 = G\1_{\mathbb{R}^{3}\setminus B_1} \in L^{\infty} \bigcap L^{3+}$, 
+where $L^{3}$ means that $L^{3-\epsilon} \quad \forall \epsilon > 0$.
+\begin{align*}
+    \int_{B_1}\frac{1}{|x|^{3}} = c\int_{r=0}^{1} r^{-3}r^{2}  \mathrm{d}x = \infty\\
+    \int_{\mathbb{R}^{3}\setminus B_1} = c \int_{r=1}^{\infty} r^{-3}r^{2}  \mathrm{d}x = \infty
+\end{align*}
 
 
+And $G*f =  \underbrace{G_1*f}_{\in L^{1} \bigcap L^{3-}}  + \underbrace{ G_2*f}_{\in
+L^{3+}\bigcap L^{\infty}} \in L_{loc}^{1}$
+\begin{exercise}
+    $f \in L^{1} + L^{p}$ if $p < \frac{n}{2}$
+\end{exercise}
 
+\begin{claim}
+    $\Delta(G*f) = f$ is weakly harmonic in $\mathbb{R}^{3}$
+\end{claim}
+\begin{proof}
+    $\underline{\text{To check: }}$
+    \begin{align*}
+        \int(G*f)\Delta \varphi = \int f \varphi \forall \varphi \in C_{0}^{\infty}(\mathbb{R}^{3})\\
+        \int(G*f)\Delta \varphi = \lim_{\epsilon \to 0^{+}}\int(K_{\epsilon}*f)\Delta \varphi = 
+        \lim_{\epsilon \to 0^{+}} \int (\Delta K_{\epsilon}) * f \varphi\\
+        = \int f \varphi
+    \end{align*}
+\end{proof}
 
-
+\begin{proposition}
+    Suppose $u_1, u_2$, $f \in L_{loc}^{1}$ and $\Delta u_1 = \Delta u_2 = f$ weakly harmonic in $\mathbb{R}^{3}$
+    Then
+    \begin{enumerate}
+        \item $u_1 - u_2$ is smooth and harmonic 
+        \item If $u_1,u_2$ are bounded, $u_1-u_2$ is constant.
+        \item If $|u_1|, |u_2| \longrightarrow 0$ as $|x| \longrightarrow \infty$, (say $u_1,u_2 \in
+        L^{1} + L^{p}, p < \infty$)
+        then $u_1 \equiv u_2$.
+        \begin{exercise}
+            show $u_1 - u_2$ is bounded
+        \end{exercise}
+    \end{enumerate}
+\end{proposition}
 
 \end{document}
