@@ -374,4 +374,999 @@ L^{3+}\bigcap L^{\infty}} \in L_{loc}^{1}$
     \end{enumerate}
 \end{proposition}
 
+
+\DATE{Sep 18, 2024}
+\,
+
+$\underline{\text{Mean value formula/property}}$
+\begin{proposition}
+    Suppose $u$ is harmonic on $B_{\mathbb{R}}(x_0)$. Then
+    \begin{enumerate}
+        \item $u(x_0) = \barint_{\partial B_{r}(x_0)} u(y)\, dS \quad \forall r \in (0,R)$
+        $u(x_0) = \text{avg of }u \text{ over } \partial B_{r}(x_0)$
+        \item $u(x_0) = \barint_{B_{r}(x_0)} = u(y)\, dy \quad \forall r \in (0,R)$
+        $u(x_0) = \text{ avg of }u \text{ over } B_{r}(x_0)$
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \begin{enumerate}
+        \item proof of (1).
+        \begin{align*}
+            \barint_{\partial B_{r}(x_0)} u(y)\, dS = q(r) \longrightarrow u(x_0) \text{ as }
+                r \rightarrow 0^{+}
+        \end{align*}
+        To show: $\frac{dq}{dr}=0 \quad (q \equiv \text{ const })$ 
+        \begin{align*}
+            x_0 &= 0\\
+            &= \frac{1}{|\partial B_1|r^{n-1}} \int _{\partial B_r}u(y)\, dS\\
+            (r= rz \in \partial B_1) &= \frac{1}{|\partial B_1|} \int_{\partial B_1}u(rz)\, d\tilde{S}
+        \end{align*}
+        We know $dS = r^{n-1}d\tilde{S}$.
+        \begin{align*}
+            \frac{dq}{dr} = \frac{1}{|\partial B_1|} \int_{\partial B_1}(\nabla u)(rz)\cdot z \,d\tilde{S}\\
+            &= -\frac{1}{|\partial B_1|}\int_{B_1}div[(\nabla u)(rz)]\, dz = 0\\
+            \Longrightarrow \Delta u(rz) r = 0
+        \end{align*}
+        
+        The second proof:
+
+        $\varphi = G * (\Delta \varphi u + 2 \nabla \varphi \nabla u) := G*f$ where
+        $f := \Delta \varphi u + 2 \nabla \varphi \nabla u$
+
+        Choose $\varphi \equiv 1$ on $B_{r+\epsilon}$.
+
+        \begin{align*}
+            u(0) = (G*f)(0)\\
+            &= \int G(0-y)f(y)\, dy
+        \end{align*}
+        \begin{align*}
+            \barint _{B_r} u(x)\, dx = \barint_{B_r} \int_{y}G(x-y)f(y) \, dy dx\\
+            = \int_{y} \barint_{B_r}G(x-y)\,dx f(y)\,dy
+        \end{align*}
+        Here we know $G(0-y)$ gravitational point of point mass at $0$ measured at $-y$.
+        $\barint_{B_r}G(x-y)\, dx$ gravitational point of body with mass distributed over $B_r$ measured 
+        at $-y$. 
+
+    \end{enumerate}
+\end{proof}
+
+\subsection{Maximum principle}
+\begin{lemma}
+    Suppose $u$ is harmonic in $B_{R}(x_0)$ and suppose $u(x_0) = \sup_{B_{R}(x_0)}u(x)$, then
+    \begin{align*}
+        u \equiv \text{ const }
+    \end{align*}
+\end{lemma}
+\begin{example}
+    n = 2. 
+    \begin{enumerate}
+        \item $1,\, x_1,\,x_2$
+        \item $x_1^{2} - x_2^{2}$. Suppose $u(0) = 0$, $\nabla u(0) = 0$
+        \begin{align*}
+            \nabla^{2} = 
+            \begin{bmatrix}
+                ,2\\
+                1,2
+            \end{bmatrix}
+            =[]
+        \end{align*}
+        row avB $u = \frac{\lambda_1}{2}y_1^{2} + \frac{\lambda_2}{2}y_2^{2}$ and 
+        $\text{tr}\nabla^{2}u = \Delta u = \lambda_1 + \lambda_2$
+    \end{enumerate}
+\end{example}
+\begin{proof}
+    \begin{align*}
+        u(x_0) \ge u(x) \quad \forall  x \in b_{R}(x_0)\\
+        u(x_0) \ge \barint_{B_{R}(x_0)}u(x)\, dx = u(x_0) \quad \text{ mean val property}
+    \end{align*}
+\end{proof}
+
+\begin{remark}
+    $\sup_{\Omega} u = \sup_{\partial \Omega} u $
+\end{remark}
+\begin{corollary}[strong maximum principle]
+    $\Omega \in \mathbb{R}^{3}$ bounded domain
+
+    Suppose $u$ harmonic in $\Omega$ and $u(x_0) = \sup_{\Omega}u \quad $ for some $x_0 \in \Omega$
+
+    Then 
+    \begin{align*}
+        u \equiv \text{ const }
+    \end{align*} 
+\end{corollary}
+\begin{remark}
+    $S = \{ x \in \Omega: u(x) = u(x_0) \}$
+\end{remark}
+If $S$ is non-empty, open and closed (in $\Omega$). "Relatively closed".
+Since $\Omega$ is connected:
+\begin{align*}
+    S = \Omega
+\end{align*}
+\begin{remark}
+    When you have a maximum principle, and then you have a Minimum principle. And you have a
+    Comparison principle
+    \begin{align*}
+        u_1,u_2 \text{ on } \Omega\\
+        u_1 \ge u_2 \text{ on } \partial \Omega
+    \end{align*}
+    Then we have
+    \begin{align*}
+        u_1 > u_2 \text{ on } \Omega (\text{ or } u_1 = u_2)
+    \end{align*}
+    And we prove this by $u_1 - u_2$ also harmonic function. $u_1 - u_2 \ge 0$ on $\partial \Omega$
+    . Then we apply min principle.
+\end{remark}
+
+\DATE{Sep 20, 2024}
+
+Minimum Principle:
+
+Given $\Omega \subseteq \mathbb{R}^{3}$ bounded domain. Suppose $u$ is harmonic in $\Omega$ and 
+$u(x_0) = \inf_{\Omega}u$ for some $x_0 \in \Omega$. Then $u \equiv \text{ const}$.
+
+\begin{proposition}[Harneck's principle/inequality]
+    Suppose $u$ is harmonic and $u >0$ in $\Omega$. 
+    Let $K \subseteq \Omega$ compact set. Then $\exists  C = C(\Omega,K) > 0$ s.t.
+    \begin{align*}
+        \sup_{K} u \le C\inf_{K}u
+    \end{align*}
+\end{proposition}
+\begin{remark}
+    This implies minimum principle: let $v = u-\inf_{K}u + \epsilon$
+
+    We have $\inf_{K}v = \epsilon \Longrightarrow \sup_{K}v \le C\inf_{K}v = C\epsilon$
+\end{remark}
+\begin{proof}
+    (In Evans, he proved with mean value formula. $u(x) = \barint_{B_{R}(x)}u\,dy$. 
+    Relate the value between two balls.)
+
+    We used to use scaling argument to prove things. Now we use compactness argument.
+
+    Harneck: $\forall \Omega, \forall K \subseteq \Omega \text{ compact, }\exists C$ s.t.
+
+    $\forall u > 0$ on $\Omega$ harmonic,
+    \begin{align*}
+        \sup_{K}u \le C\inf_{K}u
+    \end{align*}
+
+    Negsta: $\exists \Omega, \, \exists K \subseteq \Omega$ compact s.t. $\forall C > 0$:
+
+    $\exists u_{C} > 0$ harmonic on $\Omega$ s.t.
+    \begin{align*}
+        \sup_{K}u > C\inf_{K}u
+    \end{align*}
+
+    Suppose $C = N \in \mathbb{N}$:
+    \begin{align*}
+        \sup_{K}u > C\inf_{K}u
+    \end{align*}
+
+    Define $v_{N} := \frac{u_{N}}{\sup_{K}u_{N}}$. We have
+    \begin{align*}
+        1 = \sup_{K}v_{N} > N\inf_{K}v_{N} \Longrightarrow \inf_{K}v_{N} < \frac{1}{N} 
+    \end{align*}
+    Let $a \in K$. Find $B_{r_{a}} \in \Omega$
+    \begin{align*}
+        1 \ge v_{N}(a) = \barint_{B_{r}(a)}v_{N}(y)\,dy
+    \end{align*}
+    \begin{align*}
+        \underbrace{|\nabla v_{N}^{k}(x)|}_{x \in B_{\frac{r_a}{2}}(a)} 
+            \le C(k)r_{a}^{-k}\barint_{B_{r}(a)}v_{N}(y)\,dy
+    \end{align*}
+    Interior estimates theorem: $\Omega_{1} = \bigcup_{i=1}^{M}B_{r_{a_1}}(a_i)$ finitely many balls.
+    Here $\Omega_1$ covers $K$.
+    \begin{align*}
+        |\nabla^{k}v_{N}| \le C(k) \quad x \in \Omega_1
+    \end{align*}
+    And we have $C(k) = C \max_{i=1, \ldots ,M}r_{a_1}^{-k}$.
+
+    By Arzela-Ascoli $\Longrightarrow \exists $subsequence (not relabeling) $v_{N} \to v_{\infty}$ 
+    uniformly in $\Omega$, $v_{\infty}$ is harmonic in $\Omega$
+    \begin{align*}
+        \sup_{K}v_{\infty} = 1,\, \inf_{K} v_{\infty}=0,\, v_{\infty}\ge 0
+    \end{align*}
+    Countradiction! (Since this implies that $v$ is constant.)
+\end{proof}
+\begin{remark}
+    It's called compactness-contradiction argument cf.Terry Tao.
+\end{remark}
+
+\subsection{Boundary value problems (BVPs)}
+\begin{equation}
+    \begin{cases} 
+        \Delta u = f & \text{ in }\Omega \\ 
+        u|_{\partial \Omega} = g  \quad \text{Dirichlet BCs} 
+    \end{cases}
+\end{equation}
+
+\begin{example}
+    electrostatics: density of temperature or concentration of chemical... We have $\underline{\text{diffusion}}$.
+    
+    Given $c(x,t)$. (Fick's law)
+    \begin{align*}
+        \frac{d}{dt} \int_{O}c(x,t)\,dx  &= \kappa \int_{\partial O}\nabla c \cdot \vec{n} dS\\
+        &= \kappa \int_{O}div \nabla c \, dx = \kappa \int_{O} \Delta c \, dx \quad \forall O
+    \end{align*}
+    This is Heat equation 
+    \begin{align*}
+        \partial_{t}c = \kappa \Delta c \quad in \Omega
+    \end{align*}
+    If there is no flux:
+    \begin{align*}
+        \nabla c \cdot \vec{n}|_{\partial \Omega} = 0 \quad \text{Neumann BCs}\\
+        \frac{\partial c}{\partial n} = 0
+    \end{align*}
+\end{example}
+
+\DATE{Sep 23, 2024}
+
+Def: $\mathbb{R}_{+}^{n} = \{ x \in \mathbb{R}^{n}: x_{n} > 0 \}$
+Dirichlet problem and Neumann problem. 
+\begin{equation}
+    \begin{cases} 
+    \Delta u = f, & \text{in} \Omega  \\ 
+    u|_{\partial \Omega} = g   
+    \end{cases}
+\end{equation}
+
+Now consider 
+
+\begin{equation}
+    \begin{cases} 
+    \Delta u = f, & \text{in} \;\mathbb{R}_{+}^{3} \\ 
+    u|_{\partial \mathbb{R}_{+}^{3}} = g   
+    \end{cases}
+\end{equation}
+
+$R \vec{x} = (x_1,x_2,-x_3)$ and $\Delta[u(R\vec{x})] = (\Delta u)(R \vec{x})$
+
+By Odd-in-$x_3$, we mean 
+\begin{align*}
+    u(\vec{x}) = -u(R\vec{x})\\
+    u(x_1,x_2,x_3) = -u(x_1,x_2,-x_3)
+\end{align*}
+(If constant, then $u|_{\partial \mathbb{R}_{+}^{3}} = 0$)
+
+\begin{equation}
+    \tilde{f}(x) =
+    \begin{cases} 
+    f(\vec{x}), & x_3 > 0  \\ 
+    -f(R\vec{x}), &    x_3 < 0
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \tilde(u)(x) \text{ sol of } \Delta \tilde{u} = \tilde{u} = \tilde{f} \text{ on }\mathbb{R}^{3}
+\end{equation}
+
+\begin{equation}
+    \tilde(u)(x) = (G * \tilde{f})(x)
+\end{equation}
+where $\tilde{u}$ is odd.
+
+\begin{align*}
+    \Delta \tilde{u} = \tilde{f}\\
+    \underbrace{(\Delta \tilde{u}(R\vec{x}))}_{= \Delta[\tilde{u}(R\vec{x})]}  &= \tilde{f}(R\vec{x})\\
+    &= - \tilde{f}(x)\\
+    \Longrightarrow \Delta[-\tilde{u}(R\vec{x})] = \tilde{f}(x)
+\end{align*}
+
+sol unique means:
+\begin{align*}
+    \Longrightarrow \tilde(u)(\vec{x}) = -\tilde{u}(R\vec{x})\\
+    \Longrightarrow \tilde{u} \text{ is odd}
+\end{align*}
+
+Now 
+\begin{align*}
+    \tilde{u}(x) = G*\tilde{f}\\
+    = - \frac{1}{4\pi} \int_{\mathbb{R}^{3}} \frac{\tilde{f}(y)}{|x-y|}\,dy\\
+    = -\frac{1}{4\pi}\int_{\mathbb{R}^{3}} \frac{1}{|x-y|}
+     \Big[\1 _{\{ y_3 > 0 \}}f + \1_{\{ y_3 < 0 \}}(-f)(R\vec{y})\Big]\,dy\\
+    = -\frac{1}{4\pi} \int_{\mathbb{R}_{+}^{3}} \frac{1}{|x-y|}f(y) - \frac{1}{|x-R\vec{y}|}f(y)\,dy\\
+    \overset{y*=Ry}{=} - \frac{1}{4\pi} \int_{\mathbb{R}_{+}^{3}} \Big[\frac{1}{|x-y|}-\frac{1}{|x-y*|} \Big]f(y)\,dy \\
+\end{align*}
+
+Then we get:
+\begin{align*}
+    G_{\mathbb{R}_{+}^{3}}(x,y) = -\frac{1}{4\pi} (\frac{1}{|x-y|} - \frac{1}{|x-y*|}) \quad
+        \text{ Green's function for half space}
+\end{align*}
+
+Thus the Boundary value problem is:
+\begin{equation}
+    \begin{aligned}
+    \begin{cases} 
+        \Delta u = f, & \text{in} \;\mathbb{R}_{+}^{3} \\ 
+        u|_{\partial \mathbb{R}_{+}^{3}} = g   
+        \end{cases} \\
+    \Longrightarrow u(x) = \int_{R_{+}^{3}} G_{\mathbb{R}_{+}^{3}}(x-y)f(y)\,dy\\
+    = \int_{\{ x_3>0 \}} \int_{R^{2}} \quad \text{"Horizontal Convolution"}
+    \end{aligned}
+\end{equation}
+\begin{remark}
+    This is not a convolution.
+\end{remark}
+
+\subsubsection{General props of Green's function}
+\begin{equation}
+    \begin{aligned}
+        \begin{cases} 
+            \Delta u = f, &  \\ 
+            u|_{\partial \Omega} = 0, &   
+            \end{cases} \\
+    \iff u(x)= \int_{\Omega} G_{\Omega} (x,y) f(y)\,dy\\
+    = \int_{\Omega} \delta_{x}(y)f(y)\,dy \\
+    = f(x)
+    \end{aligned}
+\end{equation}
+
+0 Boundary
+\begin{align*}
+    G(\cdot ,y)|_{\partial \Omega} = 0\\
+    G(x,y) = 0 \quad \text{ when }x \in \partial \Omega
+\end{align*}
+
+Physically Green's function: Heat but the boundary keeps temperature 0.
+
+Fix $y \in \Omega$. Look for sol to
+\begin{equation}
+    \begin{aligned}
+    \Delta_{x}G_{\Omega}(x,y) = \delta(y-x) \\
+    G_{\Omega}(\cdot ,y)|_{\partial \Omega} = 0\\
+    G_{\Omega}(x,y) = K_0(x,y) + H^{(y)}(x)\quad \text{ where }K_0 = -\frac{1}{4\pi |x|} \text{ and }
+        K_0(x,y) = -\frac{1}{4\pi|x-y|} \text{ where space Green's func}
+    \end{aligned}
+\end{equation}
+where $H^{(y)}$ should be harmonic in $x$.
+
+\begin{align*}
+    \Delta_{x}(K_0(x,y) + H^{(y)}(x)) = \delta(y-x) + 0
+\end{align*}
+
+And 
+\begin{align*}
+    K_0(x,y) + H^{(y)}(x) = 0 \quad \text{ when }x \in \partial \Omega
+\end{align*}
+
+Then 
+\begin{equation}
+    \begin{cases} 
+        \Delta_{x}H^{(y)}(x) = 0, &  \\ 
+        H^{(y)}(x)|_{\partial \Omega} = K_0(x,y), &   
+    \end{cases}
+\end{equation}
+
+Philosophy:
+\begin{enumerate}
+    \item  \sout{To solve the problem in $\Omega$, find $G_{\Omega}$.}
+    \item [1*] Solve problem using a different method
+    \item To find $G_{\Omega}$, need to solve problem for $H^{(y)}$.
+    \item Read infrastion off of $G_{\Omega}$, like on HW4
+\end{enumerate}
+
+\begin{align*}
+    G_{\Omega}(x,y) = G_{\Omega}(y,x)
+\end{align*}
+Green's function is symmetric 
+\begin{equation}
+    \begin{cases} 
+    u,v \in C^{2}(\bar{\Omega}), &  \\ 
+    u,v|_{\partial \Omega} = 0, &   
+    \end{cases}
+\end{equation}
+\begin{align*}
+    \int_{\Omega}\Delta u v = \int_{\Omega} u \delta v \\
+    \langle Ax,y \rangle = \langle x, Ay \rangle \quad \forall \, x,y \in \mathbb{R}^{n}\\
+    \iff A \text{ symmetric}
+\end{align*}
+
+
+\DATE{Sep 25, 2024}
+
+\begin{equation}
+    \begin{aligned}
+    \Delta u =f \\
+    u|_{\partial \Omega} = 0\\
+    \iff \int_{\Omega}G(x,y)f(y)\,dy \quad \text{where you put the pole in }y\\
+    \Delta_{x}G(x,y) = \delta(x-y)\\
+    G(x,y) = 0 \quad x \in \partial \Omega
+    \end{aligned}
+\end{equation}
+
+Question: 
+\begin{equation}
+    \begin{aligned}
+    \Delta u = 0  \quad \text{in }\Omega\\
+    u|_{\partial \Omega} = g
+    \end{aligned}
+\end{equation}
+
+\begin{definition}[Green's formula]
+    
+\end{definition}
+
+\begin{equation}
+    \int_{\Omega}div \vec{v}\,dx = \int_{\partial \Omega}\vec{v} n \,dS
+\end{equation}
+
+\begin{align*}
+    \vec{v} = \vec{u}f\\
+    div(\vec{u}f) = (div\vec{u})f + \nabla f \cdot \vec{u}\\
+    \int_{\Omega}(div \vec{u})f + \nabla f \cdot  \vec{u}\, dx = 
+        \int_{\partial \Omega}(\vec{u}n)f\,dS\\
+    \int_{\Omega}(div\vec{u})f \,dx\\
+    = \int_{\partial \Omega}(\vec{u}n)f \,dS - \int_{\Omega}\nabla
+\end{align*}
+
+We have bounded terms
+\begin{align*}
+    \int(fy)' = \int f'g + fg'
+\end{align*}
+
+Suppose $u,v \in C^{2}(\bar{\Omega})$ scaler fns
+\begin{align*}
+    \int_{\Omega} \Delta u v \, dx = \int_{\partial \Omega}(\nabla u \vec{n})v \,dS 
+    - \int_{\Omega} \nabla u \nabla v \, dx\\
+    = \int_{\Omega}(\nabla u \vec{n})v \, dS - \int_{\Omega}u(\nabla v \vec{n})\, dS + 
+    \int_{\Omega}u \Delta v \, dx
+\end{align*}
+
+Suppose u is harmonic, suppose $v(y) = G_{\Omega}(x,y)$. We substitute this into the above formula.
+
+If $u$ is harmonic function in $\Omega$, then 
+\begin{align*}
+    u(x) = \int_{\Omega}u \frac{\partial G}{\partial n_{y}}(x,y)\, dS(y)
+\end{align*}
+This is the formula to solve 
+\begin{equation}
+    \begin{cases} 
+    \Delta u = 0, &  \\ 
+    u|_{\partial \Omega}= g, &   
+    \end{cases}
+\end{equation}
+
+\begin{problem}
+    Suppose define 
+    \begin{align*}
+        u(x) = \int_{\partial \Omega}g(y) \frac{\partial G}{\partial n_{y}}(x,y)\, dS 
+    \end{align*}
+    Then $u \longrightarrow g$ as $x \longrightarrow \partial \Omega$
+\end{problem}
+
+Here we call 
+\begin{align*}
+    P_{\Omega}(x,y) = \frac{\partial G}{\partial n_{y}}(x,y)
+\end{align*}
+
+\begin{align*}
+    \frac{\partial }{\partial n} = - \frac{\partial }{\partial y_{3}} \\
+    \frac{1}{4\pi}\frac{\partial }{\partial y_3}\Big(\frac{1}{2} 
+    \frac{2(x_3 - y_3)}{|x_y|^{3}} + \frac{1}{2}\frac{2(x_3 + y_3)}{|x-y|^{3}} \Big)\\
+    \frac{1}{2\pi} \frac{x_3}{|x-y|^{3}}
+\end{align*}
+
+\begin{align*}
+    u(x) = \frac{1}{2\pi}\int_{\underbrace{\mathbb{R}^{3}}_{\partial \mathbb{R}_{+}^{3}}}
+    \frac{x_3}{|x'-y'|^{2}+x_3^{2}}g(y)\,dy 
+\end{align*}
+
+\begin{align*}
+    \frac{1}{2\pi} \frac{\epsilon}{(|y|^{2} + \epsilon^{2})^{\frac{3}{2}}} = \phi_{\epsilon}\\
+    \text{(Check )} \phi = \frac{1}{2\pi} \frac{1}{(|y|^{2} + 1)^{\frac{3}{2}}}\\
+    \phi_{\epsilon} = \frac{1}{2\pi} \frac{1}{\epsilon^{2}} \frac{1}{(|\frac{y}{\epsilon}|^{2})
+    ^{\frac{3}{2}}}
+\end{align*}
+And we know $\int \phi \, dy = 1$
+
+Conclusion:
+\begin{align*}
+    P((y,\epsilon), y) \text{ is a mollifier.}\\
+    u(x_1,x_3,\epsilon) = \int_{\mathbb{R}^{3}} P(x_1-y_1, x_2-y_2, \epsilon)g(y_1,y_2)\,dy
+\end{align*}
+
+\begin{proposition}
+    If $g$ is bdd and continuous, then $u \longrightarrow g$ as $x_3 \longrightarrow 0^{+}$ locally 
+    uniformly.    
+\end{proposition}
+
+\begin{equation}
+    \begin{aligned}
+    \Delta u = 0  in \mathbb{R}_{+}^{3}\\
+    u|_{\partial \mathbb{R}_{+}^{3}} = g
+    \end{aligned}
+\end{equation}
+
+Question: uniqueness?
+
+We want something like Liouville theorem in half space.
+
+\begin{theorem}[comp principle]
+    $u, v \in C^{2}(\bar{\Omega})$, if $u|_{\partial \Omega} = v|_{\partial \Omega}$, then 
+    \begin{align*}
+        u \equiv v
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}[Uniqueness]
+    Suppose you have $u,v$ solve 
+\begin{align*}
+    \Delta u_{k} =f \text{in }\mathbb{R}_{+}^{3}\\
+    u_{k}|_{\partial \mathbb{R}_{+}^{3}} = g, \quad k=1,2.
+\end{align*}
+Suppose $u,v \longrightarrow 0$ as $|x| \longrightarrow +\infty$, then
+\begin{align*}
+    u \equiv v 
+\end{align*}
+\end{theorem}
+
+\DATE{Sep 27, 2024}
+
+Heat equation:
+\begin{align*}
+    \partial_{s}u - \kappa \Delta u = 0 \quad \text{ where }u  = u(x,s)
+\end{align*}
+where $\kappa $ is the diffusivity
+
+Change variable: $t = \kappa s$
+\begin{align*}
+    \partial_{t} &= \frac{1}{\kappa}\partial_{s} \\
+    \Longrightarrow \partial_{t} v - \Delta v &= 0 \quad (\kappa = 1)
+\end{align*}
+
+Here we have $v(x,t) = u(x,s)$
+
+Consider 
+\begin{align*}
+    \partial_{t}u - \Delta u = 0
+\end{align*}
+Fundamental solution? We consider two equivalent formulations:
+\begin{align*}
+    \partial_{t}\Gamma - \Delta \Gamma &= \delta_{(0,0)}(x,t) \\
+    &= \delta_{0} \delta_0(t)
+\end{align*}
+The above is solved in $\mathbb{R}^{n} \times \mathbb{R}$
+
+
+\begin{equation}
+    \begin{cases} 
+    \partial_{t}\Gamma - \Delta \Gamma = 0, &  \\ 
+    \Gamma|_{t=0} = \delta_{0}(x), &   
+    \end{cases}
+\end{equation}
+The above is solved in $\mathbb{R}^{n} \times (0,+\infty)$
+
+Similarly, consider the ODE:
+\begin{equation}
+    \begin{aligned}
+        \dot{x} = ax + \delta_0(t)& \\
+        \text{or solve:}
+    \begin{cases} 
+    \dot{x} = ax,   \\ 
+    x(0) = 1,    
+    \end{cases}
+    &\Longrightarrow x(t) = e^{at}
+    \end{aligned}
+\end{equation}
+
+Symmetry of the heat equation:
+\begin{enumerate}
+    \item space, time translation 
+    \item $O(n)$ spatial rotation and reflection 
+    \item homogeneity $u \mapsto mu$ where $m \in \mathbb{R}$
+    \item Scaling symmetry $u \mapsto u(\lambda x, \lambda^{2}t),\, \lambda > 0$ (Consider the former 
+    setup: $[\kappa] = \frac{L^{2}}{\Gamma}$)
+\end{enumerate}
+
+What's the meaning of a function which is homogeneous?
+\begin{align*}
+    f(\lambda x) = \lambda^{\alpha}f(x) ,\quad \lambda>0\\
+    \iff f \text{ is }\alpha-\text{homogeneous}
+\end{align*}
+
+\begin{example}
+    $\frac{1}{|x|}$ is $(-1)$-homogeneous.
+    \begin{align*}
+        \frac{1}{\lambda |x|} = \frac{1}{\lambda} \frac{1}{|x|} = \lambda^{-1} \frac{1}{|x|}
+    \end{align*}
+\end{example}
+
+Here for $\delta_0(x)$:
+\begin{align*}
+    \delta_{0}(x) &= \lim_{\epsilon \to \infty} \phi_{\epsilon}(x) \\
+    &= \lim_{\epsilon \to o^{+}} \frac{1}{\epsilon^{n}}\phi(\frac{x}{\epsilon})
+\end{align*}
+
+Homogeneity of $\delta_0(x)$:
+\begin{align*}
+    \delta_0(\lambda x) &= \lim_{\epsilon \to 0^{+}} \phi_{\epsilon}(\lambda x)\\
+     &= \lim_{\epsilon \to 0^{+}} \frac{1}{\epsilon^{n}}\phi(\frac{\lambda x }{\epsilon})\\
+     &= \lim_{\frac{\epsilon}{\lambda} \to 0^{+}}\frac{1}{\lambda^{n}}(\frac{\lambda}{\epsilon})^{n}
+        \phi(\frac{\lambda x }{\epsilon}) \\
+    &= \lambda^{-n}\delta_0(x)
+\end{align*}
+This shows that $\delta_0$ is $(-n)$-homogeneous.
+
+Then with the scalling symmetry, we have:
+\begin{align*}
+    &u_{\lambda,m}(x,t) = mu (\lambda x, \lambda^{2}t)\\
+    &u_{\lambda}(x,t) := \lambda^{m}u(\lambda x, \lambda^{2}t)\\
+    (m = \lambda^{n}) &\quad f_{\lambda}(x) := \lambda^{n}f(\lambda x)\\
+    &f_{\lambda} = f \iff (-n)-\text{homogeneous}
+\end{align*}
+
+Observation:
+\begin{align*}
+    (\delta_0)_{\lambda} = \delta_0(x)
+\end{align*}
+
+Expect: $\Gamma_{\lambda} = \Gamma$
+
+In Evans:
+\begin{align*}
+    \Gamma = \frac{1}{t^{\alpha}}F(\frac{x}{t^{\beta}})
+\end{align*}
+It seems we "guess" this form for heat equation. But by the derivation we've done above for 
+scaling symmetry, we know this must be the form.
+
+By symmetry, we know that:
+\begin{align*}
+    \Gamma(x,t) &= \lambda^{n} \Gamma(\lambda x, \lambda^{2} t), \quad \forall \lambda > 0\\
+    (\text{Choose } &\lambda = \frac{1}{t^{\frac{1}{2}}})\\
+    \Gamma(x,t) &= \frac{1}{t^{\frac{n}{2}}}\Gamma(\frac{x}{t^{\frac{1}{2}}}, 1)\\
+    &= \frac{1}{t^{\frac{n}{2}}}F(\frac{x}{t^{\frac{1}{2}}}) \\
+    F(y) &= \Gamma(y,1)
+\end{align*}
+Here we define: $y := \frac{x}{t^{\frac{1}{2}}}$
+
+\begin{equation}
+    \begin{aligned}
+        \partial_{t}\Gamma - \Delta \Gamma = 0 \\
+        \partial_{t}(t^{-\frac{n}{2}} F(\frac{x}{t^{\frac{1}{2}}}))
+        - \Delta(t^{-\frac{n}{2}}F(\frac{x}{t^{\frac{1}{2}}})) = 0
+    \end{aligned}
+\end{equation}
+
+Differentiate it:
+\begin{align*}
+    &\partial_{t}(t^{-\frac{n}{2}} F(\frac{x}{t^{\frac{1}{2}}}))
+        - \Delta(t^{-\frac{n}{2}}F(\frac{x}{t^{\frac{1}{2}}})) 
+    = -\frac{n}{2}t^{-\frac{n}{2} - 1}F + t^{-\frac{n}{2}}(\nabla_{y}F)(-\frac{1}{2}xt^{-\frac{3}{2}})
+    - t^{-\frac{n}{2}}(\Delta_{y}F)t^{-1} = 0\\
+    &\Longrightarrow -\frac{n}{2}F - \frac{1}{2}y \nabla_{y}F - \Delta_{y}F = 0
+\end{align*}
+
+Here we know F radial: $F = F(r),\, r= |y|$, $y \nabla_{y} = r\partial_{r}$
+
+Solve the ODE:
+\begin{align*}
+    \frac{n}{2}F +\frac{1}{2}r \partial_{r}F + \partial_{r}^{2}F + \frac{n-1}{r}\partial_{r}F &= 0\\
+    \frac{1}{2r^{n-1}}(r^{n}F)' + \frac{1}{r^{n-1}}(r^{n-1}F')' &= 0\\
+    \frac{1}{2}r^{n}F + r^{n-1}F' = A &= 0\\
+    F' &= -\frac{1}{2}rF\\
+    F &= Be^{\frac{-r^{2}}{4}}
+\end{align*}
+
+What is B?
+\begin{align*}
+    \partial_{t}\int \Gamma - \int\Delta\Gamma &= 0\\
+    \frac{d}{dt}\int_{\mathbb{R}^{n}}\Gamma &= 0 \\
+    \Longrightarrow \int\Gamma \,dx &= \text{ constant in time}
+\end{align*}
+
+\begin{align*}
+    \int_{\mathbb{R}^{n}}F(|y|)\,dy = 1 \Longrightarrow   B = \frac{1}{(4\pi)^{\frac{n}{2}}}
+\end{align*}
+
+The Heat Kernel:
+\begin{align*}
+    \Gamma(x,t) = \frac{1}{(4\pi t)^{\frac{n}{2}}}e^{-\frac{|x|^{2}}{4t}}
+\end{align*}
+
+\begin{align*}
+    \Gamma(x,\epsilon^{2}) = \phi_{\epsilon} = \frac{1}{\epsilon^{n}}\phi(\frac{x}{\epsilon})
+    \; \text{ is a Mollifier.}
+\end{align*}
+
+\begin{theorem}
+    $u_0$ is bounded and continuous on $\mathbb{R}^{n}$. Define 
+    \begin{align*}
+        u(x,t) &:= (\Gamma(\cdot , t) * u_0)(x_0) \\
+        &= \int_{\mathbb{R}^{n}}\Gamma(x-y, t)u_0(y)\,dy 
+    \end{align*}
+    , which solves heat equation and 
+    \begin{align*}
+        u \longrightarrow u_0 \text{ as  }t \longrightarrow 0^{+} \quad \text{locally uniformly.}
+    \end{align*}
+\end{theorem}
+
+
+\DATE{Oct 2, 2024}
+
+Heat Kernel:
+\begin{align*}
+    \Gamma (x,t) = \frac{1}{(4\pi t)^{\frac{n}{2}}} \exp(-\frac{|x|^{2}}{4t})
+\end{align*}
+
+Solve: IVP
+\begin{equation}
+    \begin{cases} 
+    \partial_{t} u - \Delta u = 0, &  \\ 
+    u| = u_t, &   \\
+    t = 0
+    \end{cases}
+\end{equation}
+$u(x,t) = \Gamma(,t)\ast u_{0} = \int _{\mathbb{R}^{n}}\Gamma(x-y,t)u_0(y)dy$
+
+\begin{equation}
+    \begin{cases} 
+    \partial_{t}u - \Delta u = f, &  \\ 
+    u| = 0, &   \\
+    t = 0
+    \end{cases}
+\end{equation}
+
+$f: \mathbb{R}^{n} \times [0,T) \to \mathbb{R}$ extend by zero.
+
+We have 
+\begin{align*}
+    \Gamma \ast_{x,t}f = \int_{-\infty}^{\infty}\int_{\mathbb{R}^{n}}\Gamma(x-y,t-s)
+    f(y,s)  dy \mathrm{d}s
+\end{align*}
+We only care when $t \ge s$. And we know $s \ge 0$.
+
+Thus we have 
+\begin{align*}
+    \Longrightarrow = \int_{s=0}^{t}\int_{\mathbb{R}^{n}}\Gamma(x-y, t-s)f(y,s)ds
+\end{align*}
+
+Define 
+\begin{equation}
+    \Gamma_{1}
+    \begin{cases} 
+    \Gamma, &|x|^{2} + t  \ge 1 \\ 
+    smooth, &|x|^{2} + t \le 1    
+    \end{cases}
+\end{equation}
+Define $\Gamma_{\epsilon}(x,t) = \frac{1}{\epsilon^{n}}
+\Gamma(\frac{x}{\epsilon}, \frac{t}{\epsilon^{2}})$
+
+Consider $(\partial_{t} -\Delta)\Gamma_{\epsilon} = \phi_{\epsilon} = \frac{1}{\epsilon}
+\phi(\frac{x}{\epsilon}, \frac{t}{\epsilon^{2}})$
+
+
+WTS: $\Delta(G \ast f) = f$
+\begin{align*}
+    \Delta(G_{\epsilon} \ast f)
+\end{align*}
+
+\begin{proposition}
+    Suppose $f \in C^{2}_{1}(\mathbb{R}^{n} \times [0,T))$ and $f$ is compactly supported in 
+    $\mathbb{R}^{n} \times [0,T)$
+\end{proposition}
+\begin{remark}
+    Notice we let the function touches the initial time.
+\end{remark}
+
+
+\begin{equation}
+    \begin{aligned}
+        u = \Gamma \ast_{x,t}f \\
+        u \in C_{1}^{2}\text{ solves}\\
+        \begin{cases} 
+        \partial_{t}u - \Delta u = f, &  \\ 
+        u| = 0, &   \\
+        t = 0
+        \end{cases}
+    \end{aligned}
+\end{equation}
+
+\begin{remark}
+    Suppose we have $u \in L^{1}_{loc}(\mathbb{R}^{n} \times [0, T))$, then we can say:
+    \begin{align*}
+        \partial_{t}u - \Delta u = f \text{ weakly in }\mathbb{R}^{n}\times[0,T)
+    \end{align*}
+    If $\int u (-\partial_{t} - \Delta)\varphi = \int f \varphi \quad \forall \varphi \in 
+    C^{\infty}_{0}(\mathbb{R}^{n} \times (0,T))$ (don't see initial time).
+    \begin{align*}
+        f \in L^{1}_{x,t}(\mathbb{R}^{n} \times (0,T))\\
+        \Longrightarrow u \text{ solves equation weakly.}
+    \end{align*}
+\end{remark}
+
+Now think about analogy of harmonic function: $\Delta u = 0$.
+We call them caloric function satisfying: $\partial_{t}u - \Delta u = 0$.
+
+\begin{enumerate}
+    \item Interior estimates
+    \item Liouville theorem 
+    \item maximum principle 
+    \item Harneck
+    \item Weyl's lemma.
+\end{enumerate}
+
+Now let's talk about interior estimates: if $u \in C^{2}_{1} \& \text{compactly supported}$, then 
+\begin{align*}
+    \Gamma \ast_{x,t}(\partial_{t} - \Delta)u = u
+\end{align*}
+Now we define $B_{r} := \{ x\in \mathbb{R}^{n}: |x| < r \}$ and $Q_{r} : =
+B_{r} \times (-r^{2}, 0)$.
+
+If $u$ is caloric function on $Q_{2R}$, then
+\begin{equation}
+    \sup_{Q_{R}}|\partial_{t}\nabla_{x}^{k}u| \le C_{j,k} \frac{1}{R^{2j+k}} 
+    \barint_{Q_{2R}\setminus Q_{R}}|u| dxdt \quad j,k \ge 0
+\end{equation}
+We think about $u = \phi u
+= \Gamma \ast (\partial_{t} - \Delta)(\phi u) = \Gamma \ast 
+(\partial_{t}\phi u - \Delta \phi u - 2\nabla \phi \nabla u)$ 
+where $\phi \equiv 1$ on $Q_{R}$ and $\phi \equiv 0$ outside $Q_{2R}$.
+
+
+\begin{theorem}[Liouville]
+    If $u$ is bounded and ancient sol to 
+    $\partial_{t}u - \Delta u = 0$ on $\mathbb{R}^{n} \times (-\infty,0)$, then 
+    $u \equiv \operatorname{const}$
+\end{theorem}
+\begin{remark}
+    We know 
+    \begin{align*}
+        \le C_{j,k} \frac{1}{R^{2j+k}} 
+    \barint_{Q_{2R}\setminus Q_{R}}|u| \le C \frac{1}{R^{2}}\sup_{\mathbb{R}^{n} \times (-\infty,0)}
+    |u|
+    \end{align*}
+\end{remark}
+
+Weyl's lemma: weakly caloric function is smooth.
+
+\begin{theorem}[Maximum principle]
+    $\Omega$ is bounded domain $\subseteq \mathbb{R}^{n}$. Suppose $u \in C^{2}_{1}(\Omega \times (0,T))
+    \bigcap C(\overline{\Omega \times [0,T]})$. (This is kind of a cylinder).
+
+     $\partial_{par}(\Omega \times (0,T)) = \underbrace{(\partial \Omega \times [0,T] \times 
+     (\bar{\Omega} \times \{ 0 \}))}_{\text{sides and bottom}}$
+
+     \begin{align*}
+        \text{False:} \max_{\Omega \times [0,T]} > \max_{\partial_{par}(\Omega \times [0,T])}u
+     \end{align*}
+     If $u(x_0,t_0) = \max_{\Omega \times [0,T]}u$ and $(x_0,t_0) \notin \partial_{par}
+     (\Omega \times [0,T])$, then 
+     \begin{align*}
+        u \equiv \operatorname{const}
+     \end{align*}
+\end{theorem}
+
+\DATE{Oct 4, 2024}
+Parabolic max principle: understanding
+
+Suppose $u$ has local max at $x_0, t_0$
+\begin{enumerate}
+    \item In the domain $\Omega$. $\partial_{t}u(x_0, t_0) = 0$ and $\nabla u(x_0,t_0) = 0$
+    We have 
+    \begin{align*}
+        u(x,t) = u(x_0,t_0) + \frac{1}{2}(\nabla^{2}u(x_0,t_0)(x-x_0,t-t_0))(x-x_0,t-t_0)
+    \end{align*}
+    And we have 
+    \begin{align*}
+        \underbrace{\partial_{t}u}_{ = 0} - \Delta u(x_0,t_0) = 0
+    \end{align*}
+    We actually have 
+    \begin{align*}
+        -\Delta u (x_0,t_0) < 0
+    \end{align*}
+    We will add $\epsilon(t + |x|^{2})$.
+    \item $\partial_{t}u(x_0,t_0) \ge 0$ and we still have $\nabla_{x}u(x_0,t_0)$.
+    Consider heat function
+    \begin{align*}
+        0 = \partial_{t}u - \Delta u(x_0,t_0) \ge -\Delta u(x_0,t_0)
+    \end{align*}
+    It's a parabola or saddle.
+
+\end{enumerate}
+
+\begin{theorem}[Uniqueness]
+    (We prove uniqueness by maximum principle) $u \in C_{1}^{2}(\mathbb{R}^{n}\times (0,T))$ and 
+    $u \in C(\overline{\mathbb{R}^{n} \times [0,T]})$, $u|_{t=0} = 0$ and 
+    $|u| \longrightarrow 0$ as $|x| \longrightarrow \infty$.
+
+    Then $u \equiv 0$.
+\end{theorem}
+
+We prove uniquesness by another way 
+\begin{align*}
+    \dot{x} = Ax
+\end{align*}
+where $x \in R^{10}, A \in R^{10 \times 10}$
+\begin{equation}
+    \begin{cases} 
+    u = x, & \in L^{2}  \\ 
+    \Delta = A, &   
+    \end{cases}
+\end{equation}
+By this example, we can try Parabolic PDF $\iff$ ODEs in $\infty$-dim
+
+
+\begin{equation}
+    \begin{cases} 
+    \dot{x} = Ax, &  \\ 
+    x(0) = \vec{x}, &   
+    \end{cases}
+\end{equation}
+defined on $(0,T)$. We solve it and obtain $x(t) = e^{At}\vec{0} = \vec{0}$
+
+We solve 
+\begin{equation}
+    \begin{cases} 
+    -\dot{y} = A^{*}y + f(t), & \text{on } (0,T)  \\ 
+    y(T) = 0, &
+    \end{cases}
+\end{equation}
+
+We have this "final time" problem $\longrightarrow$ solve backward.
+
+Suppose $\forall  f$ solve adj problem existence.
+
+Existence for adj problem $\Longrightarrow$ uniqueness for forward problem.
+
+Given $x$. Let $f$ be arbitrary $(f \in C_{0}^{\infty}((0,T)))$.
+
+\begin{equation}
+    \begin{cases} 
+    \dot{x} = Ax, &  \\ 
+    \int_{0}^{T}\langle \frac{dx}{dt}, y \rangle = \int_{0}^{T}\langle Ax,y \rangle,   
+    \end{cases}
+\end{equation}
+
+\begin{align*}
+    -\int_{0}^{T}\langle x,\dot{y} \rangle = \int_{0}^{T}\langle x, A^{*}y \rangle\\
+    \Longrightarrow \int_{0}^{T}\langle x, \dot{y} + A^{*}y \rangle \,dt = 0 \\
+    \int_{0}^{T}\langle x(t), -f(t) \rangle dt = 0
+\end{align*}
+This is true for $\forall  f$.
+Then $\Longrightarrow \, x \equiv 0$.
+
+\begin{theorem}
+    $u \in C_{1}^{2}(\mathbb{R}^{n} \times (0,T)) \bigcap C(\overline{\mathbb{R}^{n} \times [0,T]})$.
+    $u|_{t=0} = 0$, $|u| \le Ce^{A|x|^{2}}$.
+
+    Then $u \equiv 0$.
+\end{theorem}
+
+We are solving 
+\begin{align*}
+    v(x,t)\cdots\\
+\end{align*}
+
+Let $f \in C_{0}^{\infty}(\mathbb{R}^{n} \times (0,T))$
+\begin{equation}
+    \begin{cases} 
+        -\partial_{t}v = \Delta v + f, & \text{on }\mathbb{R}^{n} \times (0,T)  \\ 
+    v|_{t=T} = 0  
+    \end{cases}
+\end{equation}
+
+Let $w(x,t) = v(x,T-t)$ and $\tilde{f}(x,t) = f(x,T-t)$ where $w(x,t) = \Gamma *_{x,t} \tilde{f}$
+
+\begin{align*}
+    w(x,t ) = \int_{0}^{t}\int_{\mathbb{R}^{n}}\Gamma(x-y, t-s) \tilde{f}(y,s) \,dyds \\
+    \le \int_{0}^{t}\int_{B_{R}}e^{\frac{-|x-y|^{2}}{4(t-s)}}|\tilde{f}(y,s)|
+\end{align*}
+
+existence $\checkmark$.
+
+\begin{align*}
+    |w| \le \tilde{C}e^{\frac{-|x|^{2}}{Ct}}
+\end{align*}
+
+Consider 
+\begin{align*}
+    \partial_{t}u - \Delta u = 0\\
+    \int_{0}^{T}\int \partial_{t} u \cdot v - \int_{0}^{T}\int \Delta u v = 0\\
+    \Longrightarrow \underbrace{\int_{\mathbb{R}^{n}}u(x,T)v(x,T)}_{= 0} - \int_{\mathbb{R}^{n}}
+        u(0)v(0) - \int \int u(\partial_{t}v + \Delta v) = 0\\
+    \Longrightarrow \int \int u(-f)\,dx dt = 0
+\end{align*}
+This is true $\forall f \in C_{0}^{\infty}(\mathbb{R}^{n})\times (0,T) \Longrightarrow u \equiv 0$.
+
+
 \end{document}

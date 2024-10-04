@@ -16,7 +16,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % AMS
-\usepackage{amsmath, amssymb, amsthm, amsbsy, mathabx}
+% \usepackage{amssymb,amsfonts,amsthm,mathrsfs}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, amsbsy, mathabx}
+\usepackage{ulem}
 % Geometry
 \usepackage[margin=1in]{geometry} % For page margins
 \usepackage{setspace} % For double spacing
@@ -66,7 +68,7 @@
 \newtheorem{conclusion}[theorem]{Conclusion}
 \newtheorem{criterion}[theorem]{Criterion}
 \newtheorem{notation}[theorem]{Notation}
-\newtheorem{problem}[theorem]{\color{Violet}{\textbf{Problem}}}
+\newtheorem{problem}{\color{Violet}{\textbf{Problem}}}[section]
 \newtheorem{calculation}[theorem]{Calculation}
 
 \theoremstyle{definition}
@@ -113,5 +115,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % argmax and argmin
-\DeclareMathOperator*{\argmax}{argmax}
-\DeclareMathOperator*{\argmin}{argmin}
+% \DeclareMathOperator*{\argmax}{argmax}
+% \DeclareMathOperator*{\argmin}{argmin}

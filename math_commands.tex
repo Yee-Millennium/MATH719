@@ -572,7 +572,33 @@
 
 % \DeclareMathOperator*{\argmax}{arg\,max}
 % \DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
 
 \DeclareMathOperator{\sign}{sign}
 \DeclareMathOperator{\Tr}{Tr}
 \let\ab\allowbreak
+
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+
+\let\underbrace\LaTeXunderbrace
+\let\overbrace\LaTeXoverbrace
+
+% INTEGRALS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% From Pascal
+\def\Xint#1{\mathchoice
+{\XXint\displaystyle\textstyle{#1}}%
+{\XXint\textstyle\scriptstyle{#1}}%
+{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+{\XXint\scriptscriptstyle%
+\scriptscriptstyle{#1}}%
+\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{%
+\int}$ }
+\vcenter{\hbox{$#2#3$ }}\kern-.6\wd0}}
+\def\barint{\, \Xint -} % \, corrects the \! used in the definition
+\def\bariint{\barint_{} \kern-.4em \barint}
+\def\bariiint{\bariint_{} \kern-.4em \barint}
+\renewcommand{\iint}{\int_{}\kern-.34em \int} %\ minor space between the integrals
+\renewcommand{\iiint}{\iint_{}\kern-.34em \int} %\ minor space between the integrals
